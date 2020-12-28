@@ -1,0 +1,63 @@
+﻿@model MusicStoree.Models.Genre
+
+@{
+    ViewBag.Title = "Browse Albums";
+}
+<div class="genre">
+    <h3><em>@Model.Name</em> Albums</h3>
+                       
+
+    <div class="row mx-auto p-3 m-md-2">
+        @foreach (var album in Model.Albums)
+        {
+            <div class="card col-2 p-3 m-md-2">
+                <a href="@Url.Action("Details", new { id = album.AlbumId })">
+                    @if (Model.Name == "Rock")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/rock-music.jpg" style="width:100%" />
+                    }
+                    else if (Model.Name == "Classical")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/classical-music.png" style="width:100%" />
+                    }
+                    else if (Model.Name == "Jazz")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/jazz-music.jpg" style="width:100%" />
+                    }
+                    else if (Model.Name == "Pop")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/pop-music.png" style="width:100%" />
+                    }
+                    else if (Model.Name == "Disco")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/disco-music.png" style="width:100%" />
+                    }
+                    else if (Model.Name == "Latin")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/latin-music.png" style="width:100%" />
+                    }
+                    else if (Model.Name == "Metal")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/metal-music.jpg" style="width:100%" />
+                    }
+                    else if (Model.Name == "Alternative")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/alternative-music.png" style="width:100%" />
+                    }
+                    else if (Model.Name == "Reggae")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/reggae-music.jpg" style="width:100%" />
+                    }
+                    else if (Model.Name == "Blues")
+                    {
+                        <img alt="@album.Title" src="~/Content/Images/blues-music.jpg" style="width:100%" />
+                    }
+
+                    <span class="align-middle">@album.Title</span>
+
+                </a>
+            </div>
+        }
+    </div>
+
+</div>

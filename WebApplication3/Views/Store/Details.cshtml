@@ -1,0 +1,66 @@
+﻿@model MusicStoree.Models.Album
+@{
+    ViewBag.Title = "Album - " + Model.Title;
+}
+<h2>@Model.Title</h2>
+<p>
+    @if (@Model.GenreId == 1)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/rock-music.jpg" />
+    }
+    else if (@Model.GenreId == 2)
+    {
+        <img  alt="@Model.Title" src="~/Content/Images/classical-music.png"/>
+    }
+    else if (@Model.GenreId == 3)
+    {
+        <img  alt="@Model.Title" src="~/Content/Images/jazz-music.jpg" />
+    }
+    else if (@Model.GenreId == 4)
+    {
+        <img  alt="@Model.Title" src="~/Content/Images/pop-music.png" />
+    }
+    else if (@Model.GenreId == 5)
+    {
+        <img  alt="@Model.Title" src="~/Content/Images/disco-music.png"/>
+    }
+    else if (@Model.GenreId == 6)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/latin-music.png" />
+    }
+    else if (@Model.GenreId == 7)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/metal-music.jpg" />
+    }
+    else if (@Model.GenreId == 8)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/alternative-music.png" />
+    }
+    else if (@Model.GenreId == 9)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/reggae-music.jpg"/>
+    }
+    else if (@Model.GenreId == 10)
+    {
+        <img alt="@Model.Title" src="~/Content/Images/blues-music.jpg" />
+    }
+</p>
+<div>
+    <p>
+        <em>Genre:</em>
+        @Model.Genre.Name
+    </p>
+    <p>
+        <em>Artist:</em>
+        @Model.Artist.Name
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}",
+Model.Price)
+    </p>
+    
+        @Html.ActionLink("Add to cart", "AddToCart",
+        "ShoppingCart", new { id = Model.AlbumId }, new { @class = "d-sm-inline-block btn btn-sm btn-warning shadow-sm" })
+    
+</div>

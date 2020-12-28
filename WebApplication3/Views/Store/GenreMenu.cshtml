@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MusicStoree.Models.Genre>
+@{
+    ViewBag.Title = "GenreMenu";
+}
+
+<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Select Genre:</h6>
+        @foreach (var genre in Model)
+        {
+            
+                @Html.ActionLink(genre.Name,"Browse", "Store",new { Genre = genre.Name },htmlAttributes: new {@class="collapse-item"})
+        
+        }
+    </div>
+</div>

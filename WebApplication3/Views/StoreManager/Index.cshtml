@@ -1,0 +1,98 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<MusicStoree.Models.Album>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+  
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<p>
+    @using (@Html.BeginForm("Index", "StoreManager", FormMethod.Get))
+    {
+        <b>Search Music Genre: </b>
+        <input type="text" name="search" id="search" list="list"> <input type="submit" value="search" class="btn btn-sm btn-outline-primary" />
+        <datalist id="list">
+            <option value="Rock"></option>
+            <option value="Classical"></option>
+            <option value="Jazz"></option>
+            <option value="Pop"></option>
+            <option value="Disco"></option>
+            <option value="Latin"></option>
+            <option value="Metal"></option>
+            <option value="Alternative"></option>
+            <option value="Reggae"></option>
+            <option value="Blues"></option>
+        </datalist>
+    }
+</p>
+
+<table class="table table-striped">
+    <tr class="thead-light">
+        <th>
+            Artist
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Price)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="5">
+                No records found
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Truncate(item.Artist.Name, 25)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Name)
+                </td>
+                <td>
+                    @Truncate(item.Title, 25)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.AlbumId }, new { @class = "btn btn-outline-warning" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.AlbumId }, new { @class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.AlbumId }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    }
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "CartSummary";
+}
+
+@*@Html.ActionLink("Cart (" + ViewData["CartCount"] + ")", "Index", "ShoppingCart",new { @class= "d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" })
+*@
+
+    @*<a href="@Url.Action("Index", "ShoppingCart")" class= "d-none d-sm-inline-block btn btn-sm btn-light shadow-sm">
+        <i class="fas fa-shopping-cart"></i>
+        Cart (@ViewData["CartCount"])
+    </a>
+*@
+<li class="nav-item dropdown no-arrow mx-1">
+    <a class="nav-link" href="@Url.Action("Index", "ShoppingCart")" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-shopping-cart"></i>
+        <!-- Counter - Alerts -->
+        <span class="badge badge-success badge-counter">@ViewData["CartCount"]</span>
+    </a>
+</li>
